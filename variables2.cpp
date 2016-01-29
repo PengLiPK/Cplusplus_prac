@@ -1,6 +1,7 @@
 // Test variables
 
 #include <iostream>
+#include <string>
 using namespace std;
 
 int main ()
@@ -34,6 +35,14 @@ int main ()
 	// decltype(foo) bar2;
 
 	// cout << foo,bar,bar2;
+	
+	// declaring 4
+	string mystring;
+	mystring = "This is the first string";
+	cout << mystring << endl;
+	mystring = "This is the second string";
+	cout << mystring << endl;
+
 
 	// terminate the program.
 	return 0;
