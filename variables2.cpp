@@ -4,6 +4,9 @@
 #include <string>
 using namespace std;
 
+const double pi = 3.14159;
+const char newline = '\n';
+
 int main ()
 {
 	// declaring 1.
@@ -38,6 +41,12 @@ int main ()
 	
 	// declaring 4
 	string mystring;
+	//nullptr is the null pointer value.
+	bool bar = false;
+	int* p = nullptr;
+	//string mystringconst = R"(string with \backslash)"
+	//string mystringconst2 = u8"(string with \backslash)"
+
 	mystring = "This is the first string";
 	cout << mystring << endl;
 	mystring = "This is the second string";
