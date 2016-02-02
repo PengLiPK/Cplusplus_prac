@@ -1,4 +1,5 @@
 // Testing Pointers
+// Address-of operator (&) and Dereference operator (*)
 
 #include <iostream>
 using namespace std;
@@ -23,6 +24,41 @@ void print_all(const int* start, const int* stop)
 		++current; //increment pointer
 	}
 }
+
+// void pointers
+//
+void increase(void* data, int psize)
+{
+	if(psize == sizeof(char))
+	{
+		char* pchar; 
+		pchar = (char*)data;
+		++(*pchar);
+	}
+	else if(psize == sizeof(int))
+	{
+		int* pint;
+		pint = (int*)data;
+		++(*pint);
+	}
+}
+
+
+// pointer to functions
+
+int addition (int a, int b)
+{ return (a+b); }
+
+int subtraction (int a, int b)
+{ return (a-b); }
+
+int operation (int x, int y, int (*functocall)(int,int))
+{
+	int g;
+	g = (*functocall)(x,y);
+    return (g);
+}
+
 
 int main()
 {
@@ -106,6 +142,43 @@ int main()
 	const char* pconchar = "hello";
 	cout << "Value is: " << *pconchar << ".\n";
 	cout << "Address is: " << pconchar << ".\n";
+	cout << pconchar[4] << "\n";
+	cout << *(pconchar+4) << "\n";
+
+	// pointer to pointer
+	char app;
+	char* bpp;
+	char** cpp;
+	app = 'z';
+	bpp = &app;
+	cpp = &bpp;
+
+	cout << app << ", " << bpp << ", " << cpp << ".\n";
+
+	//
+	char avp = 'x';
+	int bvp = 1602;
+	increase(&avp, sizeof(avp));
+	increase(&bvp, sizeof(bvp));
+	cout << avp << ", " << bvp << ".\n";
+
+
+	// invalid poiter and null pointer
+	int* pip = 0;
+	int* qip = nullptr;
+	int* rip = NULL;
+	
+	cout << pip << ", " << qip << ", " << rip << ".\n";
+
+
+	//
+	int mpf,npf;
+	int (*minus)(int,int) = subtraction;
+
+	mpf = operation(7, 5, addition);
+	npf = operation(20, mpf, minus);
+	cout << mpf << ", " << npf << ".\n";
+
 
 	return 0;
 }
