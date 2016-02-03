@@ -73,7 +73,7 @@ int main()
 	getline(cin, mystr);
 	stringstream(mystr) >> pmovie->year;
 	
-	cout << "\nYou have entered:\n";
+	cout << "You have entered:\n";
 	cout << pmovie->title;
 	cout << " (" << pmovie->year << ")\n";
 
