@@ -43,6 +43,7 @@ int main()
 		for(n=0; n<i; n++)
 		{
 			cout << p[n] << " " ;
+			cout << *(p+n) << " ";
 		}
 		cout << "\n";
 		
