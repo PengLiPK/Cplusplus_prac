@@ -93,6 +93,16 @@ int main()
 	Cylinder cyl(10,20);
 	cout << "Volume of the cylinder is: " << cyl.volume() << "\n";
 
+
+	// Pointers
+	Rectangle2 rectobj(3,3);
+	Rectangle2* prect1,prect2,prect3;
+
+	prect1 = &rectobj;
+
+	cout << "Area is: " << prect1->area() << "\n";
+	cout << "Area is: " << (*prect1).area() << "\n";
+
 	return 0;
 }
 
