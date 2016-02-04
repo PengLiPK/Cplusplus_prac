@@ -93,6 +93,50 @@ class MyClass
 
 
 // class templates
+template <class T>
+class mypair
+{
+	T a, b;
+	public:
+	mypair(T first, T second) {a=first; b=second;}
+	T getmax();
+};
+
+template <class T>
+T mypair<T>::getmax()
+{
+	T retval;
+	retval = a>b? a : b;
+	return retval;
+}
+
+
+// template specializaton
+template <class T>
+class mycontainer
+{
+	T element;
+	public:
+	mycontainer(T arg) {element=arg;}
+	T increase() {return ++element;}
+};
+
+template <>
+class mycontainer <char>
+{
+	char element;
+	public:
+	mycontainer(char arg) {element=arg;}
+	char uppercase()
+	{
+		if((element>='a') && (element<='z'))
+		{
+				element += 'A'-'a';
+		}
+		return element;
+	}
+};
+
 
 
 int main()
@@ -142,6 +186,16 @@ int main()
 	omc.get() = 15;
 	cout << omc.get() << "\n";
 	cout << cmf2.get() << "\n";
+
+	//
+	mypair<int> myobject(100, 75);
+	cout << myobject.getmax() << "\n";
+
+	//
+	mycontainer<int> myint(7);
+	mycontainer<char> mychar('j');
+	cout << myint.increase() << "\n";
+	cout << mychar.uppercase() << "\n";
 
 	return 0;
 }
