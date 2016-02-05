@@ -90,6 +90,71 @@ class Triangle: public Polygon
 };
 
 
+// constructors and derived classes
+class Mother
+{
+	public:
+		Mother()
+		{ cout << "Mother: no parameters.\n";}
+		Mother(int a)
+		{ cout << "Mother: int paramter.\n";}
+};
+
+class Daughter:public Mother
+{
+	public:
+		Daughter(int a)
+		{ cout << "Daughter: int parameter.\n"; }
+};
+
+class Son:public Mother
+{
+	public:
+		Son(int a):Mother(a)
+	    { cout << "Son: int parameter.\n";}
+};
+
+// multiple inheritance
+class Polygonmi
+{
+	protected:
+		int width, height;
+    public:
+		Polygonmi(int a, int b):width(a),height(b){}
+};
+
+class Output
+{
+	public:
+		static void print(int i);
+};
+
+void Output::print(int i)
+{
+	cout << i << "\n";
+}
+
+class Rectanglemi:public Polygonmi, public Output
+{
+	public:
+		Rectanglemi(int a, int b):Polygonmi(a,b){}
+		int area()
+		{
+			return width*height;
+		}
+};
+
+class Trianglemi:public Polygonmi, public Output
+{
+	public:
+		Trianglemi(int a, int b):Polygonmi(a,b){}
+		int area()
+		{
+			return width*height/2;
+		}
+};
+
+
 int main()
 {
 	Rectangle rect1;
@@ -115,5 +180,15 @@ int main()
 	cout << "The area3 is: " << rect33.area() << ".\n";
 	cout << "The area4 is: " << tri11.area() << ".\n";
 
+	//
+	Daughter kelly(0);
+	Son bud(0);
+
+	//
+	Rectanglemi rectmi(4,5);
+	Trianglemi trimi(4,5);
+
+	rectmi.print(rectmi.area());
+	Trianglemi::print(trimi.area());
 	return 0;
 }
