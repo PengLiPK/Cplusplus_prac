@@ -1,5 +1,8 @@
 // Testing type conversions
 #include <iostream>
+#include <exception>
+#include <typeinfo>
+
 using namespace std;
 
 // implicit conversion of classes
@@ -30,6 +33,19 @@ class B2
 void fn(B2 x){}
 
 
+// dynamic_cast
+class Base
+{
+	virtual void dummy(){}
+};
+
+class Derived: public Base
+{
+	int a;
+};
+
+
+
 int main()
 {
 	// implicit conversion
@@ -52,5 +68,48 @@ int main()
 	// fn(foo); // not allowed for explicit ctor.
 	fn(bar2);
 	
+
+	// type casting
+	double x = 10.3;
+	int y;
+	y = int(x); //functional notation
+	y = (int) x; //c-like cast notation
+
+
+	//
+	try
+	{
+		Base* pba = new Derived;
+		Base* pbb = new Base;
+		Derived* pd;
+
+		pd = dynamic_cast<Derived*>(pba);
+		if(pd==0) cout << " Null pointer on first type-cast.\n";
+
+		pd = dynamic_cast<Derived*>(pbb);
+		if(pd==0) cout << " Null pointer on second type-cast.\n";
+
+	} catch(exception& e) {cout << "Exception" << e.what();}
+
+	//
+	int * aa,bb;
+	aa=0;bb=0;
+	if (typeid(aa) != typeid(bb))
+	{
+		cout << "The type of aa is: " << typeid(aa).name() << ".\n";
+		cout << "The type of bb is: " << typeid(bb).name() << ".\n";
+	}
+
+    try
+	{
+		Base* aaa = new Base;
+		Base* bbb = new Derived;
+		cout << "aaa is: " << typeid(aaa).name() << ".\n";
+		cout << "bbb is: " << typeid(bbb).name() << ".\n";
+		cout << "*aaa is: " << typeid(*aaa).name() << ".\n";
+		cout << "*bbb is: " << typeid(*bbb).name() << ".\n";
+	} catch(exception& e) {cout << "Exception" << e.what();}
+
+
 	return 0;
 }
