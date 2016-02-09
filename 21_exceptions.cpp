@@ -42,5 +42,16 @@ int main()
 	{
 		cout << e.what() << "\n";
 	}
+
+	// bad_alloc standard exception
+	try
+	{
+		int* myarray = new int[100000000000];
+	}
+	catch (exception& e)
+	{
+		cout << "Stardard exception: " << e.what() << "\n";
+	}
+
 	return 0;
 }
